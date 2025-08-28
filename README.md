@@ -8,8 +8,14 @@ cp .env.example .env
 ## Dependencias
 composer install
 npm install
+php artisan key:generate
 
+npm run dev
 ## php artisan migrate no se debe correr si se importa la base
 
 ## Importar la base de datos
 En la carpeta DB importar el archivo en phpmyadmin despues de haber creado la base con el mismo nombre
+
+
+
+@ -> significa directiva laravel para realizar acciones
