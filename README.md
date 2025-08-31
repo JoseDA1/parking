@@ -16,6 +16,7 @@ npm run dev
 ## Importar la base de datos
 En la carpeta DB importar el archivo en phpmyadmin despues de haber creado la base con el mismo nombre
 
-
+e@gmail.com
+J12345678
 
 @ -> significa directiva laravel para realizar acciones

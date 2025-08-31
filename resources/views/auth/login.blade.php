@@ -6,7 +6,7 @@
     <div class="login-box">
         <div class="card card-outline card-info">
             <div class="card-header text-center">
-                <img src="{{ asset('backend/dist/img/logo_audysoft.png') }}" alt="">
+                <img src="{{ asset('logo/logo-parking.png') }}" alt="" style="width:124px">
             </div>
             <div class="card-body">
                 <p class="login-box-msg">{{ __('Log In') }}</p>
@@ -48,7 +48,7 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            <button type="submit" class="btn btn-info btn-block text-white">{{__(Login)}}</button>
+                            <button type="submit" class="btn btn-info btn-block text-white">{{ __('Log In') }}</button>
                         </div>
                     </div>
                     <br>

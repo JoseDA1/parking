@@ -4,9 +4,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" href="favicon.ico" type="image/x-icon">
-
+    <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <link rel="icon" type="image/png" href="{{ asset('logo/favicon.png') }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
@@ -18,6 +20,14 @@
     <link rel="stylesheet" href="{{asset('backend/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{asset('backend/dist/css/adminlte.css')}}">
+
+    <style>
+        .outline-personalizado:focus {
+            border-color: #80bdff !important;
+            box-shadow: 0 0 0 0.1rem rgb(49 210 242, 0.8) !important;
+            outline: none !important;
+        }
+    </style>
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
