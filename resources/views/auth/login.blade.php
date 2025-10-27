@@ -9,7 +9,7 @@
                 <img src="{{ asset('logo/logo-parking.png') }}" alt="" style="width:124px">
             </div>
             <div class="card-body">
-                <p class="login-box-msg">{{ __('Log In') }}</p>
+                <p class="login-box-msg fw-bolder">{{ __('Log In') }}</p>
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
                     <div class="input-group mb-3">
@@ -47,7 +47,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col">
+                        <div class="col fw-bold">
                             <button type="submit" class="btn btn-info btn-block text-white">{{ __('Log In') }}</button>
                         </div>
                     </div>

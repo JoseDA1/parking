@@ -10,7 +10,7 @@
     </div>
     <div class="card-body">
         
-        <p class="login-box-msg">{{ __('Log Up') }}</p>
+        <p class="login-box-msg fw-bolder">{{ __('Log Up') }}</p>
         <form action="{{ route('register') }}" method="post">
             @csrf
             <div class="input-group mb-3">
@@ -79,7 +79,7 @@
             </div>
             <div class="row mb-4 mt-2">
                 <div class="col-12">
-                    <button type="submit" class="btn btn-info text-white col">
+                    <button type="submit" class="btn btn-info text-white col fw-bold">
                         {{ __('Register') }}
                     </button>
                 </div>
@@ -97,7 +97,7 @@
         </a>
       </div> -->
 
-      <a href="login.html" class="text-center">I already have a membership</a>
+      <a href="login" class="text-center">I already have a membership</a>
     </div>
     <!-- /.form-box -->
   </div><!-- /.card -->
