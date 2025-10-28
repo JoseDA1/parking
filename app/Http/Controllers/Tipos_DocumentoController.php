@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Tipos_Documento;
 
 use Illuminate\Http\Request;
 class Tipos_DocumentoController extends Controller
@@ -11,8 +12,20 @@ class Tipos_DocumentoController extends Controller
     public function index()
     {
         //
+        $model = Tipos_Documento::all();
 
+        return view('tipos_documentos.index', compact('model'));
     }
+  
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function cambioestadotiposdocumento(Request $request)
+	{
+		$model = Tipos_Documento::find($request->id);
+		$model->estado=$request->estado;
+		$model->save();
+	}
 
     /**
      * Show the form for creating a new resource.

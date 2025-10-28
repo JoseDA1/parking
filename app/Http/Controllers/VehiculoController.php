@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Marca;
+use App\Models\Vehiculo;
 
 use Illuminate\Http\Request;
 
-class MarcaController extends Controller
+class VehiculoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,17 +13,17 @@ class MarcaController extends Controller
     public function index()
     {
         //
-        $model = Marca::all();
+        $model = Vehiculo::all();
 
-        return view('marcas.index', compact('model'));
+        return view('vehiculos.index', compact('model'));
     }
   
     /**
      * Show the form for creating a new resource.
      */
-    public function cambioestadomarca(Request $request)
+    public function cambioestadovehiculo(Request $request)
 	{
-		$model = Marca::find($request->id);
+		$model = Vehiculo::find($request->id);
 		$model->estado=$request->estado;
 		$model->save();
 	}

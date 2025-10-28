@@ -32,21 +32,22 @@ class CustomDataTable {
 
 $(document).ready(function() {
     const myDataTable = new CustomDataTable('#example1');
-    });
+});
+$(document).ready(function() {
+    // $('#example1').DataTable({
+    //     "responsive": true, "lengthChange": false, "autoWidth": false,
+    //     "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    //     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    //     console.log("Se ha cambiado el estado del ${elementType} correctamente.");
+});
 
-    $(function () {
-    $("#example1").DataTable({
-    "responsive": true, "lengthChange": false, "autoWidth": false,
-    "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-
-    console.log("Se ha cambiado el estado del ${elementType} correctamente.");
-
-    // Inicializar DataTable para example1 si es necesario
+$(document).ready(function () {
     $("#example1").DataTable();
+    // Inicializar DataTable para example1 si es necesario
 
     // Manejar el evento de cambio para cualquier elemento con la clase toggle-class
     $('#example1').on('change', '.toggle-class', function() {
+
         var isChecked = $(this).prop('checked'); // Verificar si el checkbox está marcado o desmarcado
         var elementType = $(this).data('type'); // Obtener el tipo de elemento (país, departamento, ciudad, etc.)
         var elementId = $(this).attr('data-id'); // Obtener el ID del elemento
@@ -55,6 +56,33 @@ $(document).ready(function() {
         switch (elementType) {
             case 'bahia':
                 url = 'cambioestadobahia';
+                break;
+            case 'tarifa':
+                url = 'cambioestadotarifa';
+                break;
+            case 'tipodocumento':
+                url = 'cambioestadotiposdocumento';
+                break;
+            case 'metodopago':
+                url = 'cambioestadometodospago';
+                break;
+            case 'cliente':
+                url = 'cambioestadocliente';
+                break;
+            case 'marca':
+                url = 'cambioestadomarca';
+                break;
+            case 'registro':
+                url = 'cambioestadoregistro';
+                break;
+            case 'pago':
+                url = 'cambioestadopago';
+                break;
+            case 'vehiculo':
+                url = 'cambioestadovehiculo';
+                break;
+            case 'tipovehiculo':
+                url = 'cambioestadotipovehiculo';
                 break;
            
             default:

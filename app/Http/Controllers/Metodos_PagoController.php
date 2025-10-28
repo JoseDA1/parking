@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Marca;
+use App\Models\Metodos_Pago;
 
 use Illuminate\Http\Request;
 
-class MarcaController extends Controller
+class Metodos_PagoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,17 +13,17 @@ class MarcaController extends Controller
     public function index()
     {
         //
-        $model = Marca::all();
+        $model = Metodos_Pago::all();
 
-        return view('marcas.index', compact('model'));
+        return view('metodospago.index', compact('model'));
     }
   
     /**
      * Show the form for creating a new resource.
      */
-    public function cambioestadomarca(Request $request)
+    public function cambioestadotiposdocumento(Request $request)
 	{
-		$model = Marca::find($request->id);
+		$model = Metodos_Pago::find($request->id);
 		$model->estado=$request->estado;
 		$model->save();
 	}

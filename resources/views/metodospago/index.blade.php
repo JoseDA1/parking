@@ -4,7 +4,7 @@
 
 <div class="card mt-2">
     <div class="card-header">
-    <h3 class="card-title">Bahias</h3>
+    <h3 class="card-title">Tarifas</h3>
     </div>
     <!-- /.card-TABLE-->
     <div class="card-body">
@@ -12,21 +12,20 @@
         <thead class="thead-dark">
             <tr>
                 <th>ID</th>
-                <th>Numero</th>
+                <th>Nombre</th>
                 <th>Estado</th>
                 <th>Acción</th>
             </tr>
         </thead>
         <tbody>
         
-        @foreach($bahias as $bahia)
+        @foreach($model as $md)
         <tr>
-            <td>{{$bahia->id}}</td>
-            <td>{{$bahia->numero_bahia}}</td>
-            <!-- Cambiar cod del whatsapp -->
+            <td>{{$md->id}}</td>
+            <td>{{$md->nombre}}</td>
             <td>
-            <input data-type="bahia" data-id="{{$bahia->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" 
-            data-toggle="toggle" data-on="Activo" data-off="Inactivo" {{ $bahia->estado ? 'checked':'' }}>
+            <input data-type="metodopago" data-id="{{$md->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" 
+            data-toggle="toggle" data-on="Activo" data-off="Inactivo" {{ $md->estado ? 'checked':'' }}>
             </td>
             <td></td>
         </tr>

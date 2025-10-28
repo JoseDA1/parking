@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Marca;
+use App\Models\Registro;
 
 use Illuminate\Http\Request;
 
-class MarcaController extends Controller
+class RegistroController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,17 +13,17 @@ class MarcaController extends Controller
     public function index()
     {
         //
-        $model = Marca::all();
+        $model = Registro::all();
 
-        return view('marcas.index', compact('model'));
+        return view('registros.index', compact('model'));
     }
   
     /**
      * Show the form for creating a new resource.
      */
-    public function cambioestadomarca(Request $request)
+    public function cambioestadoregistro(Request $request)
 	{
-		$model = Marca::find($request->id);
+		$model = Registro::find($request->id);
 		$model->estado=$request->estado;
 		$model->save();
 	}

@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Marca;
 
 use Illuminate\Http\Request;
+use App\Models\Tarifa;
 
-class MarcaController extends Controller
+class TarifaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,17 +13,17 @@ class MarcaController extends Controller
     public function index()
     {
         //
-        $model = Marca::all();
+        $tarifas = Tarifa::all();
 
-        return view('marcas.index', compact('model'));
+        return view('tarifas.index', compact('tarifas'));
     }
-  
+
     /**
      * Show the form for creating a new resource.
      */
-    public function cambioestadomarca(Request $request)
+    public function cambioestadotarifa(Request $request)
 	{
-		$model = Marca::find($request->id);
+		$model = Tarifa::find($request->id);
 		$model->estado=$request->estado;
 		$model->save();
 	}
