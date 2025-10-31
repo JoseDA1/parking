@@ -30,6 +30,8 @@ class BahiaController extends Controller
     public function create()
     {
         //
+        return view('bahias.create');
+
     }
 
     /**
@@ -38,6 +40,13 @@ class BahiaController extends Controller
     public function store(Request $request)
     {
         //
+        $model = new Bahia();
+        $model->numero_bahia = $request->numero_bahia;
+        $model->estado = $request->estado;
+        $model->registradoPor = $request->registradoPor;
+        $model->save();
+		// $model = Bahia::create($request->all());
+        return redirect()->route('bahias.index')->with('successMsg', 'El registro se creó exitosamente');
     }
 
     /**
@@ -69,6 +78,20 @@ class BahiaController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // $ciudad->delete(); sin id, se le pasa el objeto completo
+        try {
+            //Con ID
+            $model = Bahia::find($request->id);
+            $model->delete();
+            return redirect()->route('ciudads.index')->with('successMsg', 'El registro se eliminó exitosamente');
+        } catch (QueryException $e) {
+            // Capturar y manejar violaciones de restricción de clave foránea
+            Log::error('Error al eliminar el ciudad: ' . $e->getMessage());
+            return redirect()->route('ciudads.index')->withErrors('El registro que desea eliminar tiene información relacionada. Comuníquese con el Administrador');
+        } catch (Exception $e) {
+            // Capturar y manejar cualquier otra excepción
+            Log::error('Error inesperado al eliminar el ciudad: ' . $e->getMessage());
+            return redirect()->route('ciudads.index')->withErrors('Ocurrió un error inesperado al eliminar el registro. Comuníquese con el Administrador');
+        }
     }
 }

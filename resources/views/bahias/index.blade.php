@@ -1,11 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
+</section>
+    @include('layouts.msg')
+<section class="content">
 
 <div class="card mt-2">
+    
     <div class="card-header">
+        <a href="{{ route('bahias.create') }}" class="btn btn-primary float-right" title="Nuevo"><i class="fas fa-plus nav-icon"></i></a>
     <h3 class="card-title">Bahias</h3>
     </div>
+
     <!-- /.card-TABLE-->
     <div class="card-body">
     <table id="example1" class="table table-bordered table-striped">
@@ -28,7 +34,13 @@
             <input data-type="bahia" data-id="{{$bahia->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" 
             data-toggle="toggle" data-on="Activo" data-off="Inactivo" {{ $bahia->estado ? 'checked':'' }}>
             </td>
-            <td></td>
+            <td>
+                <form class="d-inline delete-form" action="{{ route('bahias.destroy', $bahia) }}"  method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger btn-sm" title="Eliminar"><i class="fas fa-trash-alt"></i></button>
+                </form>
+            </td>
         </tr>
         @endforeach
         </tbody>

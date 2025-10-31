@@ -1,8 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-
+</section>
+    @include('layouts.msg')
+<section class="content">
 <div class="card mt-2">
+    
+
     <div class="card-header">
     <h3 class="card-title">Tarifas</h3>
     </div>
@@ -26,16 +30,22 @@
         @foreach($model as $md)
         <tr>
             <td>{{$md->id}}</td>
-            <td>{{$md->bahias_id}}</td>
-            <td>{{$md->vehiculos_id}}</td>
-            <td>{{$md->clientes_id}}</td>
+            <td>{{$md->bahias->numero_bahia}}</td>
+            <td>{{$md->vehiculos->placa}}</td>
+            <td>{{$md->clientes->nombre}}</td>
             <td>{{$md->fecha_ingreso}}</td>
             <td>{{$md->fecha_salida}}</td>
             <td>
             <input data-type="registro" data-id="{{$md->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" 
             data-toggle="toggle" data-on="Activo" data-off="Inactivo" {{ $md->estado ? 'checked':'' }}>
             </td>
-            <td></td>
+            <td>
+                <form class="d-inline delete-form" action="{{ route('registros.destroy', $md) }}"  method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger btn-sm" title="Eliminar"><i class="fas fa-trash-alt"></i></button>
+                </form>
+            </td>
         </tr>
         @endforeach
         </tbody>

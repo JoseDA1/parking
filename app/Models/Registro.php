@@ -3,6 +3,11 @@
 namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Bahia;
+use App\Models\Cliente;
+use App\Models\Vehiculo;
+use App\Models\Pago;
+
 
 class Registro extends Model
 {
@@ -31,4 +36,5 @@ class Registro extends Model
     public function pagos(){
         return $this->hasOne(Pago::class, 'registros_id');
     }
+
 }

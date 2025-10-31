@@ -34,7 +34,13 @@
             <input data-type="tarifa" data-id="{{$tarifa->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" 
             data-toggle="toggle" data-on="Activo" data-off="Inactivo" {{ $tarifa->estado ? 'checked':'' }}>
             </td>
-            <td></td>
+            <td>
+                <form class="d-inline delete-form" action="{{ route('tarifas.destroy', $tarifa) }}"  method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger btn-sm" title="Eliminar"><i class="fas fa-trash-alt"></i></button>
+                </form>
+            </td>
         </tr>
         @endforeach
         </tbody>

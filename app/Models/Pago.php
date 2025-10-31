@@ -3,6 +3,8 @@
 namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Metodos_Pago;
+use App\Models\Registro;
 
 class Pago extends Model
 {
@@ -15,9 +17,9 @@ class Pago extends Model
         'valor_total',
         'metodos_pago_id',
         'estado',
-        'registradoPor',
+        'registradoPor'
     ];
-    public function metodos_pagos(){
+    public function metodo_pago(){
         return $this->belongsTo(Metodos_Pago::class);
     }
     public function registros(){

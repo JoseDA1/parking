@@ -27,7 +27,13 @@
             <input data-type="marca" data-id="{{$md->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" 
             data-toggle="toggle" data-on="Activo" data-off="Inactivo" {{ $md->estado ? 'checked':'' }}>
             </td>
-            <td></td>
+            <td>
+                <form class="d-inline delete-form" action="{{ route('marcas.destroy', $md) }}"  method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger btn-sm" title="Eliminar"><i class="fas fa-trash-alt"></i></button>
+                </form>
+            </td>
         </tr>
         @endforeach
         </tbody>

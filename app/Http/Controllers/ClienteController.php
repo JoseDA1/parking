@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Cliente;
+use App\Models\Tipos_Documento;
 
 use Illuminate\Http\Request;
 
@@ -34,6 +35,8 @@ class ClienteController extends Controller
     public function create()
     {
         //
+        $tipos_documentos = Tipos_Documento::where('estado', '=', 1)->orderBy('nombre')->get();
+        return view('clientes.create', compact('tipos_documentos'));
     }
 
     /**
@@ -42,6 +45,15 @@ class ClienteController extends Controller
     public function store(Request $request)
     {
         //
+        $model = new Cliente();
+        $model->nombre = $request->nombre;
+        $model->documento = $request->documento;
+        $model->tipos_documentos_id = $request->tipos_documentos;
+        $model->estado = $request->estado;
+        $model->registradoPor = $request->registradoPor;
+        $model->save();
+        return redirect()->route('clientes.index')->with('successMsg', 'El registro se creó exitosamente');
+
     }
 
     /**
