@@ -34,6 +34,7 @@ class Metodos_PagoController extends Controller
     public function create()
     {
         //
+        return view('metodospago.create');
     }
 
     /**
@@ -42,6 +43,13 @@ class Metodos_PagoController extends Controller
     public function store(Request $request)
     {
         //
+        $model = new Metodos_Pago();
+        $model->nombre = $request->nombre;
+        $model->estado = $request->estado;
+        $model->registradoPor = $request->registradoPor;
+        $model->save();
+        return redirect()->route('metodospago.index')->with('successMsg', 'El registro se creó exitosamente');
+
     }
 
     /**
@@ -73,6 +81,20 @@ class Metodos_PagoController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // $ciudad->delete(); sin id, se le pasa el objeto completo
+        try {
+            //Con ID
+            $model = Metodos_Pago::find($id);
+            $model->delete();
+            return redirect()->route('metodospago.index')->with('successMsg', 'El registro se eliminó exitosamente');
+        } catch (QueryException $e) {
+            // Capturar y manejar violaciones de restricción de clave foránea
+            Log::error('Error al eliminar el ciudad: ' . $e->getMessage());
+            return redirect()->route('metodospago.index')->withErrors('El registro que desea eliminar tiene información relacionada. Comuníquese con el Administrador');
+        } catch (Exception $e) {
+            // Capturar y manejar cualquier otra excepción
+            Log::error('Error inesperado al eliminar el ciudad: ' . $e->getMessage());
+            return redirect()->route('metodospago.index')->withErrors('Ocurrió un error inesperado al eliminar el registro. Comuníquese con el Administrador');
+        }
     }
 }

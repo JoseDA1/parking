@@ -85,6 +85,20 @@ class ClienteController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // $ciudad->delete(); sin id, se le pasa el objeto completo
+        try {
+            //Con ID
+            $model = Cliente::find($id);
+            $model->delete();
+            return redirect()->route('clientes.index')->with('successMsg', 'El registro se eliminó exitosamente');
+        } catch (QueryException $e) {
+            // Capturar y manejar violaciones de restricción de clave foránea
+            Log::error('Error al eliminar el ciudad: ' . $e->getMessage());
+            return redirect()->route('clientes.index')->withErrors('El registro que desea eliminar tiene información relacionada. Comuníquese con el Administrador');
+        } catch (Exception $e) {
+            // Capturar y manejar cualquier otra excepción
+            Log::error('Error inesperado al eliminar el ciudad: ' . $e->getMessage());
+            return redirect()->route('clientes.index')->withErrors('Ocurrió un error inesperado al eliminar el registro. Comuníquese con el Administrador');
+        }
     }
 }

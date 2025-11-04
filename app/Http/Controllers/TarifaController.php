@@ -34,6 +34,7 @@ class TarifaController extends Controller
     public function create()
     {
         //
+        return view('tarifas.create');
     }
 
     /**
@@ -42,6 +43,16 @@ class TarifaController extends Controller
     public function store(Request $request)
     {
         //
+        $model = new Tarifa();
+        $model->valor_hora = $request->hora;
+        $model->valor_parcial = $request->parcial;
+        $model->valor_dia = $request->dia;
+        $model->valor_mensuales = $request->mensual;
+        $model->estado = $request->estado;
+        $model->registradoPor = $request->registradoPor;
+        $model->save();
+        return redirect()->route('tarifas.index')->with('successMsg', 'El registro se creó exitosamente');
+
     }
 
     /**
@@ -73,6 +84,20 @@ class TarifaController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // $ciudad->delete(); sin id, se le pasa el objeto completo
+        try {
+            //Con ID
+            $model = Tarifa::find($id);
+            $model->delete();
+            return redirect()->route('tarifas.index')->with('successMsg', 'El registro se eliminó exitosamente');
+        } catch (QueryException $e) {
+            // Capturar y manejar violaciones de restricción de clave foránea
+            Log::error('Error al eliminar el ciudad: ' . $e->getMessage());
+            return redirect()->route('tarifas.index')->withErrors('El registro que desea eliminar tiene información relacionada. Comuníquese con el Administrador');
+        } catch (Exception $e) {
+            // Capturar y manejar cualquier otra excepción
+            Log::error('Error inesperado al eliminar el ciudad: ' . $e->getMessage());
+            return redirect()->route('tarifas.index')->withErrors('Ocurrió un error inesperado al eliminar el registro. Comuníquese con el Administrador');
+        }
     }
 }

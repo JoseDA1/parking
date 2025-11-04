@@ -1,10 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-</section>
-    @include('layouts.msg')
 <section class="content">
-
+    @include('layouts.msg')
+</section>
 <div class="card mt-2">
     
     <div class="card-header">
@@ -35,7 +34,7 @@
             data-toggle="toggle" data-on="Activo" data-off="Inactivo" {{ $bahia->estado ? 'checked':'' }}>
             </td>
             <td>
-                <form class="d-inline delete-form" action="{{ route('bahias.destroy', $bahia) }}"  method="POST">
+                <form class="d-inline delete-form" action="{{ route('bahias.destroy', $bahia->id) }}"  method="POST">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger btn-sm" title="Eliminar"><i class="fas fa-trash-alt"></i></button>

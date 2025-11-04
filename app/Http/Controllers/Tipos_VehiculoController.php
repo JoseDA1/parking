@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Tipos_Vehiculo;
+use App\Models\Tarifa;
 
 use Illuminate\Http\Request;
 
@@ -34,6 +35,8 @@ class Tipos_VehiculoController extends Controller
     public function create()
     {
         //
+        $tarifa = Tarifa::where('estado', '=', 1)->get();
+        return view('tipos_vehiculos.create', compact('tarifa'));
     }
 
     /**
@@ -42,6 +45,14 @@ class Tipos_VehiculoController extends Controller
     public function store(Request $request)
     {
         //
+        $model = new Tipos_Vehiculo();
+        $model->nombre = $request->nombre;
+        $model->tarifas_id = $request->tarifa;
+        $model->estado = $request->estado;
+        $model->registradoPor = $request->registradoPor;
+        $model->save();
+        return redirect()->route('tiposvehiculos.index')->with('successMsg', 'El registro se creó exitosamente');
+
     }
 
     /**
@@ -73,6 +84,20 @@ class Tipos_VehiculoController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // $ciudad->delete(); sin id, se le pasa el objeto completo
+        try {
+            //Con ID
+            $model = Tipos_Vehiculo::find($id);
+            $model->delete();
+            return redirect()->route('tiposvehiculos.index')->with('successMsg', 'El registro se eliminó exitosamente');
+        } catch (QueryException $e) {
+            // Capturar y manejar violaciones de restricción de clave foránea
+            Log::error('Error al eliminar el ciudad: ' . $e->getMessage());
+            return redirect()->route('tiposvehiculos.index')->withErrors('El registro que desea eliminar tiene información relacionada. Comuníquese con el Administrador');
+        } catch (Exception $e) {
+            // Capturar y manejar cualquier otra excepción
+            Log::error('Error inesperado al eliminar el ciudad: ' . $e->getMessage());
+            return redirect()->route('tiposvehiculos.index')->withErrors('Ocurrió un error inesperado al eliminar el registro. Comuníquese con el Administrador');
+        }
     }
 }

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use App\Models\Registro;
 use App\Models\Bahia;
+use App\Models\Vehiculo;
+use App\Models\Cliente;
 
 use Illuminate\Http\Request;
 
@@ -28,13 +30,16 @@ class RegistroController extends Controller
 		$model->estado=$request->estado;
 		$model->save();
 	}
-
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
         //
+        $cliente = Cliente::where('estado', '=', 1)->orderBy('nombre')->get();
+        $bahia = Bahia::where('estado', '=', 1)->orderBy('numero_bahia')->get();
+        $vehiculo = Vehiculo::where('estado', '=', 1)->orderBy('placa')->get();
+        return view('registros.create', compact('cliente', 'bahia', 'vehiculo'));
     }
 
     /**
@@ -43,6 +48,17 @@ class RegistroController extends Controller
     public function store(Request $request)
     {
         //
+        $model = new Registro();
+        $model->bahias_id = $request->bahia;
+        $model->vehiculos_id = $request->vehiculo;
+        $model->clientes_id = $request->cliente;
+        $model->fecha_ingreso = $request->fecha_ingreso;
+        $model->fecha_salida = $request->fecha_salida;
+        $model->estado = $request->estado;
+        $model->registradoPor = $request->registradoPor;
+        $model->save();
+        return redirect()->route('registros.index')->with('successMsg', 'El registro se creó exitosamente');
+
     }
 
     /**
@@ -82,11 +98,11 @@ class RegistroController extends Controller
             return redirect()->route('registros.index')->with('successMsg', 'El registro se eliminó exitosamente');
         } catch (QueryException $e) {
             // Capturar y manejar violaciones de restricción de clave foránea
-            Log::error('Error al eliminar: ' . $e->getMessage());
+            Log::error('Error al eliminar el ciudad: ' . $e->getMessage());
             return redirect()->route('registros.index')->withErrors('El registro que desea eliminar tiene información relacionada. Comuníquese con el Administrador');
         } catch (Exception $e) {
             // Capturar y manejar cualquier otra excepción
-            Log::error('Error inesperado al eliminar: ' . $e->getMessage());
+            Log::error('Error inesperado al eliminar el ciudad: ' . $e->getMessage());
             return redirect()->route('registros.index')->withErrors('Ocurrió un error inesperado al eliminar el registro. Comuníquese con el Administrador');
         }
     }

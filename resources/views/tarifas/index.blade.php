@@ -1,9 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-
+<section class="content">
+    @include('layouts.msg')
+</section>
 <div class="card mt-2">
     <div class="card-header">
+        <a href="{{ route('tarifas.create') }}" class="btn btn-primary float-right" title="Nuevo"><i class="fas fa-plus nav-icon"></i></a>
+        
     <h3 class="card-title">Tarifas</h3>
     </div>
     <!-- /.card-TABLE-->

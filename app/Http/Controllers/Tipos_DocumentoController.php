@@ -33,6 +33,7 @@ class Tipos_DocumentoController extends Controller
     public function create()
     {
         //
+        return view('tipos_documentos.create');
     }
 
     /**
@@ -41,6 +42,14 @@ class Tipos_DocumentoController extends Controller
     public function store(Request $request)
     {
         //
+        $model = new Tipos_Documento();
+        $model->nombre = $request->nombre;
+        $model->abreviatura = $request->abreviatura;
+        $model->estado = $request->estado;
+        $model->registradoPor = $request->registradoPor;
+        $model->save();
+        return redirect()->route('tipos_documentos.index')->with('successMsg', 'El registro se creó exitosamente');
+
     }
 
     /**
@@ -72,6 +81,20 @@ class Tipos_DocumentoController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // $ciudad->delete(); sin id, se le pasa el objeto completo
+        try {
+            //Con ID
+            $model = Tipos_Documento::find($id);
+            $model->delete();
+            return redirect()->route('tipos_documentos.index')->with('successMsg', 'El registro se eliminó exitosamente');
+        } catch (QueryException $e) {
+            // Capturar y manejar violaciones de restricción de clave foránea
+            Log::error('Error al eliminar el ciudad: ' . $e->getMessage());
+            return redirect()->route('tipos_documentos.index')->withErrors('El registro que desea eliminar tiene información relacionada. Comuníquese con el Administrador');
+        } catch (Exception $e) {
+            // Capturar y manejar cualquier otra excepción
+            Log::error('Error inesperado al eliminar el ciudad: ' . $e->getMessage());
+            return redirect()->route('tipos_documentos.index')->withErrors('Ocurrió un error inesperado al eliminar el registro. Comuníquese con el Administrador');
+        }
     }
 }
