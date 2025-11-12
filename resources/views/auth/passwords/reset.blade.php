@@ -3,6 +3,8 @@
 @section('title', 'Reset')
 
 @section('content')
+<div class="background w-100 h-100 bg-dark position-absolute opacity-100"></div>
+
 <div class="login-box">
     <div class="card card-outline card-primary">
         <div class="card-header text-center">

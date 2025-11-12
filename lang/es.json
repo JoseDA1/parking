@@ -89,6 +89,8 @@
     "Home": "Inicio",
     "HTTP Version Not Supported": "Versión HTTP no compatible",
     "I'm a teapot": "Soy una tetera",
+    "Register a new membership": "Registrarse",
+    "I already have a membership": "Ya tengo una cuenta",
     "If you did not create an account, no further action is required.": "Si no ha creado una cuenta, no se requiere ninguna acción adicional.",
     "If you did not receive the email": "Si usted no recibió el correo electrónico",
     "If you did not request a password reset, no further action is required.": "Si no ha solicitado el restablecimiento de contraseña, omita este mensaje de correo electrónico.",

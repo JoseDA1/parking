@@ -33,11 +33,17 @@
 									<div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
 										<div class="form-group label-floating">
 											<label class="control-label">Metodos de Pago <strong style="color:red;">(*)</strong></label>
-											<select class="form-control" name="metodospagos" autocomplete="off" value="{{ old('metodospagos') }}" required>
+											<!-- <select class="form-control" name="metodospagos" autocomplete="off" value="{{ old('metodospagos') }}" required>
 												@foreach($metodospagos as $mt)
 													<option value="{{ $mt->id }}">{{ $mt->nombre }}</option>
 												@endforeach
-											</select>
+											</select> -->
+											<select class="form-control" name="metodospagos" id="metodospagos" value="{{ old('metodospagos') }}">
+												<option value>Seleccione Metodo de Pago</option>
+												@foreach($metodospagos as $mt)
+													<option value="{{ $mt->id }}">{{ $mt->nombre }}</option>
+												@endforeach
+                    						</select>
 										</div>
 									</div>
 								</div>

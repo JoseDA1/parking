@@ -17,6 +17,7 @@ class Vehiculo extends Model
         'tipos_vehiculos_id',
         'estado',
         'registradoPor',
+        'image',
     ];
     public function marcas(){
         return $this->belongTo(Marca::class);

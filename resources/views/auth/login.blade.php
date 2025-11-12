@@ -3,6 +3,9 @@
 @section('title', 'Login')
 
 @section('content')
+<!-- #343a40 -->
+<!-- <div class="background w-75 h-75 bg-dark position-absolute opacity-50" style="background-image: url({{ asset('backend/dist/img/parqueobackground.png') }})"></div> -->
+<div class="background w-100 h-100 bg-dark position-absolute opacity-100"></div>
     <div class="login-box">
         <div class="card card-outline card-info">
             <div class="card-header text-center">
@@ -53,14 +56,18 @@
                     </div>
                     <br>
                     <div class="row">
-                        <div class="col-12">
-                            <p class="mb-1">
+                        <div class="col-12  text-center ">
+                            <p class="mb-1 btn border text-center">
 
                             <!-- Para Recordar la contraseña -->
                                 @if (Route::has('password.request'))
-                                    <a href="{{ route('password.request') }}">{{ __('Forgot Your Password?') }}</a>
+                                    <a href="{{ route('password.request') }}" class="text-reset text-decoration-none">{{ __('Forgot Your Password?') }}</a>
                                 @endif
                             </p>
+                            <p class="mb-1 btn border text-center">
+                                <a href="{{ route('register') }}" class="text-reset text-decoration-none">{{ __('Register a new membership') }}</a>
+                            </p>
+                            
                         </div>
                     </div>
                 </form>

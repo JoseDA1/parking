@@ -20,6 +20,7 @@
                 <th>Modelo</th>
                 <th>Marca</th>
                 <th>Tipo de Vehiculo</th>
+                <th>Imagen</th>
                 <th>Estado</th>
                 <th>Acción</th>
             </tr>
@@ -33,6 +34,9 @@
             <td>{{$md->modelo}}</td>
             <td>{{$md->marca_id}}</td>
             <td>{{$md->tipos_vehiculos_id}}</td>
+            <td class="d-flex justify-content-center">
+                <img src="{{asset('uploads/vehiculos/'.$md->image)}}" alt="Sin Imagen" class="img-fluid" style="height:50px;" >
+            </td>
             <td>
             <input data-type="vehiculo" data-id="{{$md->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" 
             data-toggle="toggle" data-on="Activo" data-off="Inactivo" {{ $md->estado ? 'checked':'' }}>

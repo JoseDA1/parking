@@ -39,6 +39,10 @@
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="{{asset('backend/plugins/select2/css/select2.min.css')}}">
+    <link rel="stylesheet" href="{{asset('backend/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
+    <link rel="stylesheet" href="{{asset('backend/dist/css/select2.css')}}">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
 
@@ -127,4 +131,8 @@
 
 <script src="{{asset('backend/dist/js/table.js')}}"></script>
 <script src="{{asset('backend/dist/js/btnForm.js')}}"></script>
+<!-- Select2 -->
+<script src="{{asset('backend/plugins/select2/js/select2.full.js')}}"></script>
+<!-- Selectors -->
+<script src="{{asset('backend/dist/js/selectors.js')}}"></script>
 </html>

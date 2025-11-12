@@ -3,6 +3,8 @@
 @section('title', 'Register')
 
 @section('content')
+<div class="background w-100 h-100 bg-dark position-absolute opacity-100"></div>
+
 <div class="register-box">
   <div class="card card-outline card-info">
     <div class="card-header text-center">
@@ -79,7 +81,7 @@
             </div>
             <div class="row mb-4 mt-2">
                 <div class="col-12">
-                    <button type="submit" class="btn btn-info text-white col fw-bold">
+                    <button type="submit" class="btn btn-info text-white col fw-bold ">
                         {{ __('Register') }}
                     </button>
                 </div>
@@ -96,8 +98,11 @@
           Sign up using Google+
         </a>
       </div> -->
-
-      <a href="login" class="text-center">I already have a membership</a>
+      <div class="col text-center ">
+          <p class="mb-1 btn border text-center">
+              <a href="{{ route('login') }}" class="text-decoration-none text-reset color-none">I already have a membership</a>
+          </p>
+      </div>
     </div>
     <!-- /.form-box -->
   </div><!-- /.card -->

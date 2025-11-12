@@ -16,7 +16,7 @@
 						<div class="card-header bg-secondary">
 							<h3>@yield('title')</h3>
 						</div>
-						<form method="POST" action="{{ route('vehiculos.store') }}">
+						<form method="POST" action="{{ route('vehiculos.store') }} " enctype="multipart/form-data">
 							@csrf
 							<div class="card-body">
 								<div class="row">
@@ -55,7 +55,15 @@
 											</select>
 										</div>
 									</div>
-									
+								</div>
+								<div class="row">
+									<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+										<div class="form-group label-floating">
+											<label class="control-label">Imagen <strong style="color:red;">(*)</strong></label>
+											<input type="file" class="form-control" name="image" autocomplete="off" value="{{ old('image') }}" multiple accept="image/*">
+											
+										</div>
+									</div>
 								</div>
 								<!-- <input type="hidden" class="form-control" name="estado" value="1">
 								<input type="hidden" class="form-control" name="registradoPor" value="{{ Auth::user()->id }}"> -->

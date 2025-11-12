@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('tipos_vehiculos_id')->constrained();
             $table->string('estado');
             $table->string('registradoPor');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

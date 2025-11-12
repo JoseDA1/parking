@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 use App\Models\Vehiculo;
 use App\Models\Marca;
 use App\Models\Tipos_Vehiculo;
+use Carbon\Carbon;
 
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class VehiculoController extends Controller
@@ -47,6 +49,18 @@ class VehiculoController extends Controller
     public function store(Request $request)
     {
         //
+        $image = $request->file('image');
+        $slug = Str::slug($request->placa);
+        if(isset($image)){
+            $currentDate = Carbon::now()->toDateString();
+            $imageName = $slug.'-'.$currentDate.'.'.$image->getClientOriginalExtension();
+            if(!file_exists('uploads/vehiculos')){
+                mkdir('uploads/vehiculos', 0777, true);
+            }
+            $image->move('uploads/vehiculos',$imageName);
+        }else{
+            $imageName = "";
+        }
         $model = new Vehiculo();
         $model->placa = $request->placa;
         $model->modelo = $request->modelo;
@@ -54,6 +68,7 @@ class VehiculoController extends Controller
         $model->tipos_vehiculos_id = $request->tipo_vehiculo;
         $model->estado = $request->estado;
         $model->registradoPor = $request->registradoPor;
+        $model->image = $imageName;
         $model->save();
         return redirect()->route('vehiculos.index')->with('successMsg', 'El registro se creó exitosamente');
 
