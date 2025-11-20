@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Tipos_Documento;
+use App\Http\Requests\Tipos_DocumentoRequest;
 
 use Illuminate\Http\Request;
 class Tipos_DocumentoController extends Controller
@@ -39,7 +40,7 @@ class Tipos_DocumentoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Tipos_DocumentoRequest $request)
     {
         //
         $model = new Tipos_Documento();
@@ -63,18 +64,25 @@ class Tipos_DocumentoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+     public function edit(string $id)
     {
         //
+        $tiposdocumento = Tipos_Documento::find($id);
+       
+        return view('tipos_documentos.edit', compact("tiposdocumento"));
+
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+    public function update(Request $request, Tipos_Documento $tiposdocumento)
+{
+ 
+    $tiposdocumento->update($request->all());
+
+    return redirect()->route('tipos_documentos.index')->with('successMsg', 'El registro se actualizó exitosamente');
+}
 
     /**
      * Remove the specified resource from storage.

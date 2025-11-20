@@ -32,7 +32,7 @@
           </li>
           <li class="nav-item menu-open">
             <a href="{{route('bahias.index')}}" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <i class="fas fa-map-marked-alt"></i>
               <p>
                 Bahias
               </p>
@@ -40,7 +40,7 @@
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-copy"></i>
+              <i class="fas fa-id-card"></i>
               <p>
                 Modificar Clientes
                 <i class="fas fa-angle-left right"></i>
@@ -50,7 +50,7 @@
             <ul class="nav nav-treeview">
               <li class="nav-item menu-open">
               <a href="{{route('tipos_documentos.index')}}" class="nav-link active">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <i class="fas fa-file-alt"></i>
                   <p>
                     Tipo de documentos
                   </p>
@@ -58,7 +58,7 @@
               </li>
               <li class="nav-item menu-open">
                 <a href="{{route('clientes.index')}}" class="nav-link active">
-                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                  <i class="fas fa-users"></i>
                   <p>
                     Clientes
                   </p>
@@ -68,7 +68,7 @@
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-copy"></i>
+              <i class="fas fa-door-open"></i>
               <p>
                 Registros y Pagos
                 <i class="fas fa-angle-left right"></i>
@@ -79,7 +79,7 @@
               <li class="nav-item menu-open">
                 <!-- Metodo en web -->
                 <a href="{{route('registros.index')}}" class="nav-link active">
-                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                  <i class="fas fa-book"></i>
                   <p>
                     Registros
                   </p>
@@ -87,8 +87,17 @@
               </li>
               <li class="nav-item menu-open">
                 <!-- Metodo en web -->
+                <a href="{{route('salidas.index')}}" class="nav-link active">
+                  <i class="fas fa-sign-out-alt"></i>
+                  <p>
+                    Salidas
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item menu-open">
+                <!-- Metodo en web -->
                 <a href="{{route('pagos.index')}}" class="nav-link active">
-                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                  <i class="fas fa-file-invoice-dollar"></i>
                   <p>
                     Pagos
                   </p>
@@ -96,7 +105,7 @@
               </li>
               <li class="nav-item menu-open">
                 <a href="{{route('metodospago.index')}}" class="nav-link active">
-                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                  <i class="fas fa-credit-card"></i>
                   <p>
                     Metodo de pagos
                   </p>
@@ -107,7 +116,7 @@
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-copy"></i>
+              <i class="fas fa-motorcycle"></i>
               <p>
                 Modificar Vehiculos
                 <i class="fas fa-angle-left right"></i>
@@ -118,7 +127,7 @@
               <li class="nav-item menu-open">
                 <!-- Metodo en web -->
                 <a href="{{route('vehiculos.index')}}" class="nav-link active">
-                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                  <i class="fas fa-car"></i>
                   <p>
                     Vehiculos
                   </p>
@@ -127,7 +136,7 @@
               <li class="nav-item menu-open">
                 <!-- Metodo en web -->
                 <a href="{{route('tiposvehiculos.index')}}" class="nav-link active">
-                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                  <i class="fas fa-truck-monster"></i>
                   <p>
                     Tipo de Vehiculos
                   </p>
@@ -135,7 +144,7 @@
               </li>
               <li class="nav-item menu-open">
                 <a href="{{route('tarifas.index')}}" class="nav-link active">
-                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                  <i class="fas fa-coins"></i>
                   <p>
                     Tarifas
                   </p>
@@ -144,7 +153,7 @@
               <li class="nav-item menu-open">
                 <!-- Metodo en web -->
                 <a href="{{route('marcas.index')}}" class="nav-link active">
-                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                  <i class="fas fa-certificate"></i>
                   <p>
                     Marcas
                   </p>

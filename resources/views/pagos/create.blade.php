@@ -22,10 +22,19 @@
 								<div class="row">
 									<div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
 										<div class="form-group label-floating">
-											<label class="control-label">Registros <strong style="color:red;">(*)</strong></label>
-											<select class="form-control" name="registros" autocomplete="off" value="{{ old('registros') }}" required>
-												@foreach($registros as $rg)
-													<option value="{{ $rg->id }}">{{ $rg->id }} - {{ $rg->clientes_id }}</option>
+											<label class="control-label">Salida <strong style="color:red;">(*)</strong></label>
+											<select class="form-control" name="salida" id="salida" value="{{ old('salida') }}" required>
+												<option value>Salida</option>
+												@foreach($salidas as $sa)
+													<option value="{{ $sa->id }}"
+													data-ingreso="{{ $sa->registro->fecha_ingreso }}"
+													data-salida="{{ $sa->fecha_salida }}"
+													data-tarifa="{{ $sa->registro->vehiculos->tipos_vehiculos->tarifas->id}}"
+													data-hora="{{ $sa->registro->vehiculos->tipos_vehiculos->tarifas->valor_hora}}"
+													data-parcial="{{ $sa->registro->vehiculos->tipos_vehiculos->tarifas->valor_parcial}}"
+													data-dia="{{ $sa->registro->vehiculos->tipos_vehiculos->tarifas->valor_dia}}"
+													data-mensual="{{ $sa->registro->vehiculos->tipos_vehiculos->tarifas->valor_mensuales}}">
+													{{ $sa->registro->vehiculos->placa }} - {{ $sa->registro->clientes->nombre }}</option>
 												@endforeach
 											</select>
 										</div>
@@ -33,33 +42,58 @@
 									<div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
 										<div class="form-group label-floating">
 											<label class="control-label">Metodos de Pago <strong style="color:red;">(*)</strong></label>
-											<!-- <select class="form-control" name="metodospagos" autocomplete="off" value="{{ old('metodospagos') }}" required>
-												@foreach($metodospagos as $mt)
-													<option value="{{ $mt->id }}">{{ $mt->nombre }}</option>
-												@endforeach
-											</select> -->
-											<select class="form-control" name="metodospagos" id="metodospagos" value="{{ old('metodospagos') }}">
+											<select class="form-control" name="metodospagos" id="metodospagos" value="{{ old('metodospagos') }}" required>
 												<option value>Seleccione Metodo de Pago</option>
 												@foreach($metodospagos as $mt)
 													<option value="{{ $mt->id }}">{{ $mt->nombre }}</option>
 												@endforeach
-                    						</select>
+                   							</select>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
+										<div class="form-group label-floating">
+											<div class="form-group label-floating">
+												<label class="control-label">Ingreso</label>
+												<input type="text" class="form-control" id="ingresofecha" name="ingresofecha" value="" disabled>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
+										<div class="form-group label-floating">
+											<div class="form-group label-floating">
+												<label class="control-label">Salida</label>
+												<input type="text" class="form-control" id="salidafecha" name="salidafecha" value="" disabled>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
+										<div class="form-group label-floating">
+											<div class="form-group label-floating">
+												<label class="control-label">Tarifa</label>
+												<input type="text" class="form-control" id="tarifa" name="tarifa" value="" disabled>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
+										<div class="form-group label-floating">
+											<div class="form-group label-floating">
+												<label class="control-label">Total</label>
+												<input type="text" class="form-control" id="total" name="total" value="" disabled>
+											</div>
 										</div>
 									</div>
 								</div>
 								
-								<div class="row">
-									<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
-										<div class="form-group label-floating">
-											<label class="control-label">Total <strong style="color:red;">(*)</strong></label>
-											<input type="number" class="form-control" name="total" autocomplete="off" value="{{ old('total') }}">
-										</div>
-									</div>
-								</div>
 								<!-- <input type="hidden" class="form-control" name="estado" value="1">
 								<input type="hidden" class="form-control" name="registradoPor" value="{{ Auth::user()->id }}"> -->
 							</div>
 							<input type="hidden" class="form-control" name="estado" value="1">
+							<input type="hidden" id="valor_total" name="valor_total" value="0">
+							<input type="hidden" id="salidas_id" name="salidas_id" value="">
 								<input type="hidden" class="form-control" name="registradoPor" value="{{ Auth::user()->id }}">
 							<div class="card-footer">
 								<div class="row">

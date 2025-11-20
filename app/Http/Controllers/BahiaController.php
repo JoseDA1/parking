@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Bahia;
+use App\Http\Requests\BahiaRequest;
 
 class BahiaController extends Controller
 {
@@ -37,7 +38,7 @@ class BahiaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(BahiaRequest $request)
     {
         //
         $model = new Bahia();
@@ -63,14 +64,19 @@ class BahiaController extends Controller
     public function edit(string $id)
     {
         //
+        $bahia = Bahia::find($id);
+       
+        return view('bahias.edit', compact("bahia"));
+
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(BahiaRequest $request, Bahia $bahia)
     {
-        //
+        $bahia->update($request->all());
+        return redirect()->route('bahias.index')->with('successMsg', 'El registro se actualizó exitosamente');
     }
 
     /**

@@ -17,7 +17,10 @@
             <tr>
                 <th>ID</th>
                 <th>Nombre</th>
-                <th>Tarifa</th>
+                <th>Hora</th>
+                <th>Dia</th>
+                <th>Mes</th>
+                <th>Media Hora</th>
                 <th>Estado</th>
                 <th>Acción</th>
             </tr>
@@ -28,7 +31,11 @@
         <tr>
             <td>{{$md->id}}</td>
             <td>{{$md->nombre}}</td>
-            <td>{{$md->tarifas_id}}</td>
+            <td>{{$md->tarifas->valor_hora}}</td>
+            <td>{{$md->tarifas->valor_dia}}</td>
+            <td>{{$md->tarifas->valor_mensuales}}</td>
+            <td>{{$md->tarifas->valor_parcial}}</td>
+
             <td>
             <input data-type="tipovehiculo" data-id="{{$md->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" 
             data-toggle="toggle" data-on="Activo" data-off="Inactivo" {{ $md->estado ? 'checked':'' }}>

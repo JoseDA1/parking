@@ -15,9 +15,12 @@
         <thead class="thead-dark">
             <tr>
                 <th>ID</th>
-                <th>Registro</th>
-                <th>Metodo de Pago</th>
+                <!-- <th>Registro</th> -->
+                <th>Placa</th>
+                <th>Entrada</th>
+                <th>Salida</th>
                 <th>Total</th>
+                <th>Metodo de Pago</th>
                 <th>Estado</th>
                 <th>Accion</th>
             </tr>
@@ -27,9 +30,11 @@
         @foreach($model as $md)
         <tr>
             <td>{{$md->id}}</td>
-            <td>{{$md->registros_id}}</td>
-            <td>{{$md->metodos_pago_id}}</td>
+            <td>{{$md->salida->registro->vehiculos->placa}}</td>
+            <td>{{$md->salida->registro->fecha_ingreso}}</td>
+            <td>{{$md->salida->fecha_salida}}</td>
             <td>$ {{$md->valor_total}}</td>
+            <td>{{ $md->metodo_pago->nombre ?? 'Sin asignar' }}</td>
             <td>
             <input data-type="pago" data-id="{{$md->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" 
             data-toggle="toggle" data-on="Activo" data-off="Inactivo" {{ $md->estado ? 'checked':'' }}>

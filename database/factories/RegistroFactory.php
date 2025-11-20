@@ -23,7 +23,6 @@ class RegistroFactory extends Factory
             'vehiculos_id' => Vehiculo::inRandomOrder()->first()->id,
             'clientes_id' => Cliente::inRandomOrder()->first()->id,
             'fecha_ingreso' => fake()->dateTimeBetween('-1 month', 'now'),
-            'fecha_salida' => null,
             'estado' => '1',
             'registradoPor' => '1',
         ];

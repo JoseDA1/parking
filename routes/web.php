@@ -11,11 +11,14 @@ use App\Http\Controllers\VehiculoController;
 use App\Http\Controllers\Tipos_VehiculoController;
 use App\Http\Controllers\BahiaController;
 use App\Http\Controllers\TarifaController;
+use App\Http\Controllers\SalidaController;
 
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::get('/404', function () {
+    abort(404);
+});
 Auth::routes();
 
 
@@ -42,9 +45,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('cambioestadovehiculo', [VehiculoController::class, 'cambioestadovehiculo'])->name('cambioestadovehiculo');
     Route::resource('tiposvehiculos', Tipos_VehiculoController::class);
     Route::get('cambioestadotipovehiculo', [Tipos_VehiculoController::class, 'cambioestadotipovehiculo'])->name('cambioestadotipovehiculo');
-    
-
-    // Route::resource('tarifas', TarifaController::class);
+    Route::resource('salidas', SalidaController::class);
+    Route::get('cambioestadosalida', [SalidaController::class, 'cambioestadosalida'])->name('cambioestadosalida');
+    Route::get('/pagos/obtenertotal', [PagoController::class, 'obtenerTotal'])->name('pagos.obtenerTotal');
 });
 
 /*Route::get('/', function(){

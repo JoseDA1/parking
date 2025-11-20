@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Tipos_Vehiculo;
 
 class Tarifa extends Model
 {
@@ -20,6 +21,6 @@ class Tarifa extends Model
         'registrado_por',
     ];
     public function tipos_vehiculos(){
-        return $this->hasOne(Tipos_Vehiculo::class, 'tarifas_id');
+        return $this->hasMany(Tarifa::class, 'tipos_vehiculos_id', 'id');
     }
 }

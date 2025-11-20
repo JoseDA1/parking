@@ -21,7 +21,7 @@ class PagoFactory extends Factory
     {
         return [
             //
-            'registros_id' => Registro::inRandomOrder()->first()->id,
+            // 'registros_id' => Registro::inRandomOrder()->first()->id,
             'valor_total' => fake()->randomFloat(2, 1000, 999999999),
             'metodos_pago_id' => Metodos_Pago::inRandomOrder()->first()->id,
             'estado' => '1',

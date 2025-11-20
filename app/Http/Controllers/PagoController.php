@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Pago;
-use App\Models\Registro;
+use App\Models\Salida;
 use App\Models\Metodos_Pago;
 use App\Models\Cliente;
 
@@ -37,10 +37,10 @@ class PagoController extends Controller
     public function create()
     {
         //
-        $registros = Registro::where('estado', '=', 1)->orderBy('id')->get();
+        $salidas = Salida::where('estado', '=', 1)->orderBy('id')->get();
         $metodospagos = Metodos_Pago::where('estado', '=', 1)->orderBy('nombre')->get();
         $cliente = Cliente::where('estado', '=', 1)->orderBy('nombre')->get();
-        return view('pagos.create', compact('cliente','registros','metodospagos'));
+        return view('pagos.create', compact('cliente','salidas','metodospagos'));
     }
 
     /**
@@ -50,8 +50,8 @@ class PagoController extends Controller
     {
         //
         $model = new Pago();
-        $model->registros_id = $request->registros;
-        $model->valor_total = $request->total;
+        $model->valor_total = $request->valor_total;
+        $model->salidas_id = $request->salida;
         $model->metodos_pago_id = $request->metodospagos;
         $model->estado = $request->estado;
         $model->registradoPor = $request->registradoPor;
@@ -104,5 +104,9 @@ class PagoController extends Controller
             Log::error('Error inesperado al eliminar el ciudad: ' . $e->getMessage());
             return redirect()->route('pagos.index')->withErrors('Ocurrió un error inesperado al eliminar el registro. Comuníquese con el Administrador');
         }
+    }
+    public function obtenerTotal(Request $request = null)
+    {
+        return response()->json(['total' => 2, 'debug' => $request->all()]);
     }
 }

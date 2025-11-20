@@ -67,17 +67,16 @@ class ClienteController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Cliente $cliente)
     {
-        //
+        $tiposdocumento = Tipos_Documento::all();
+        return view('clientes.edit',compact('cliente','tiposdocumento'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Cliente $cliente)
     {
-        //
+        $cliente->update($request->all());
+        return redirect()->route('clientes.index')->with('successMsg','El registro se actualizó exitosamente');
     }
 
     /**

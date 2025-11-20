@@ -5,7 +5,7 @@ use App\Models\Registro;
 use App\Models\Bahia;
 use App\Models\Vehiculo;
 use App\Models\Cliente;
-
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class RegistroController extends Controller
@@ -52,8 +52,8 @@ class RegistroController extends Controller
         $model->bahias_id = $request->bahia;
         $model->vehiculos_id = $request->vehiculo;
         $model->clientes_id = $request->cliente;
-        $model->fecha_ingreso = $request->fecha_ingreso;
-        $model->fecha_salida = $request->fecha_salida;
+        $carbonDate = Carbon::now('UTC');
+        $model->fecha_ingreso = $carbonDate->format('Y-m-d H:i:s');
         $model->estado = $request->estado;
         $model->registradoPor = $request->registradoPor;
         $model->save();

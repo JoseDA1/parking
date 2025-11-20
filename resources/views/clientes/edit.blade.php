@@ -15,14 +15,15 @@
 						<div class="card-header bg-secondary">
 							<h3>@yield('title')</h3>
 						</div>
-						<form method="POST" action="{{ route('clientes.store') }}">
+						<form method="POST" action="{{ route('clientes.update', $cliente) }}">
 							@csrf
+							@method('PUT')
 							<div class="card-body">
 								<div class="row">
 									<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
 										<div class="form-group label-floating">
 											<label class="control-label">Nombre <strong style="color:red;">(*)</strong></label>
-											<input type="text" class="form-control" name="nombre" autocomplete="off" value="{{ old('nombre') }}" required>
+											<input type="text" class="form-control" name="nombre" autocomplete="off" value="{{ $cliente->nombre }}" required>
 										</div>
 									</div>
 								</div>
@@ -33,40 +34,41 @@
 									<div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
 										<div class="form-group label-floating">
 											<label class="control-label">Documento <strong style="color:red;">(*)</strong></label>
-											<input type="text" class="form-control" name="documento" autocomplete="off" value="{{ old('documento') }}" required>
+											<input type="text" class="form-control" name="documento" autocomplete="off" value="{{ $cliente->documento }}" required>
 										</div>
 									</div>
 									<div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
+										
 										<div class="form-group label-floating">
 											<label class="control-label">Tipo Documento <strong style="color:red;">(*)</strong></label>
-											<select class="form-control" name="tipos_documentos" autocomplete="off" id="tipos_documentos"value="{{ old('tipos_documentos') }}" required>
-												<option value>Seleccione</option>
-
-												@foreach($tipos_documentos as $td)
-													<option value="{{ $td->id }}">{{ $td->abreviatura }}</option>
+											<select class="form-control" name="tipos_documentos" id="tipos_documentos" disabled>
+												@foreach($tiposdocumento as $td)
+													<option {{ $td->id == $cliente->tipos_documentos_id ? 'selected' : '' }} value="{{ $td->id }}">{{ $td->nombre }}</option>
 												@endforeach
+												
 											</select>
+											
+
 										</div>
-									</div>
 								</div>
 								
 								<div class="row">
 									<div class="col-lg-4 col-sm-4 col-md-4 col-xs-4">
 										<div class="form-group label-floating">
 											<label class="control-label">Email</label>
-											<input type="text" class="form-control" name="email" autocomplete="off" value="{{ old('email') }}">
+											<input type="text" class="form-control" name="email" autocomplete="off" value="{{ $cliente->email }}">
 										</div>
 									</div>
 									<div class="col-lg-4 col-sm-4 col-md-4 col-xs-4">
 										<div class="form-group label-floating">
 											<label class="control-label">Telefono <strong style="color:red;">(*)</strong></label>
-											<input type="text" class="form-control" name="telefono" autocomplete="off" value="{{ old('telefono') }}">
+											<input type="text" class="form-control" name="telefono" autocomplete="off" value="{{ $cliente->telefono }}">
 										</div>
 									</div>
 									<div class="col-lg-4 col-sm-4 col-md-4 col-xs-4">
 										<div class="form-group label-floating">
 											<label class="control-label">Direccion</label>
-											<input type="text" class="form-control" name="direccion" autocomplete="off" value="{{ old('direccion') }}">
+											<input type="text" class="form-control" name="direccion" autocomplete="off" value="{{ $cliente->direccion }}">
 										</div>
 									</div>
 								</div>

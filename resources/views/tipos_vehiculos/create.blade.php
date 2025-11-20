@@ -20,21 +20,16 @@
 							@csrf
 							<div class="card-body">
 								<div class="row">
-									<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+									<div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
 										<div class="form-group label-floating">
 											<label class="control-label">Nombre <strong style="color:red;">(*)</strong></label>
-											<input type="text" class="form-control" name="nombre" autocomplete="off" value="{{ old('nombre') }}" required>
+											<input type="text" class="form-control" id="nombre" name="nombre" autocomplete="off" value="{{ old('nombre') }}" required>
 										</div>
 									</div>
-								</div>
-								<div class="row">
-									
-								</div>
-								<div class="row">
 									<div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
 										<div class="form-group label-floating">
 											<label class="control-label">Tarifa <strong style="color:red;">(*)</strong></label>
-											<select class="form-control" name="tarifa" autocomplete="off" value="{{ old('tarifa') }}" required>
+											<select class="form-control" name="tarifa" id="tarifa" autocomplete="off" value="{{ old('tarifa') }}" required>
 												@foreach($tarifa as $tf)
 													<option value="{{ $tf->id }}">{{ $tf->id }}</option>
 												@endforeach
@@ -42,9 +37,6 @@
 										</div>
 									</div>
 								</div>
-								
-								<!-- <input type="hidden" class="form-control" name="estado" value="1">
-								<input type="hidden" class="form-control" name="registradoPor" value="{{ Auth::user()->id }}"> -->
 							</div>
 							<input type="hidden" class="form-control" name="estado" value="1">
 								<input type="hidden" class="form-control" name="registradoPor" value="{{ Auth::user()->id }}">

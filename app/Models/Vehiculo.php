@@ -23,7 +23,7 @@ class Vehiculo extends Model
         return $this->belongTo(Marca::class);
     }
     public function tipos_vehiculos(){
-        return $this->belongTo(tipos_vehiculos::class);
+        return $this->belongsTo(Tipos_Vehiculo::class, 'tipos_vehiculos_id', 'id');
     }
     public function registros(){
         return $this->hasMany(Ingreso::class, 'vehiculos_id');

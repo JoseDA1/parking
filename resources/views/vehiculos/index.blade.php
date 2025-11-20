@@ -33,7 +33,8 @@
             <td>{{$md->placa}}</td>
             <td>{{$md->modelo}}</td>
             <td>{{$md->marca_id}}</td>
-            <td>{{$md->tipos_vehiculos_id}}</td>
+            <td>{{$md->tipos_vehiculos->id}}</td>
+
             <td class="d-flex justify-content-center">
                 <img src="{{asset('uploads/vehiculos/'.$md->image)}}" alt="Sin Imagen" class="img-fluid" style="height:50px;" >
             </td>

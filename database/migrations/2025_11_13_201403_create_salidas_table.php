@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pagos', function (Blueprint $table) {
+        Schema::create('salidas', function (Blueprint $table) {
             $table->id();
             $table->foreignId('registros_id')->constrained();
-            $table->double('valor_total', 8, 0);
-            $table->foreignId('metodos_pago_id')->constrained();
+            $table->datetime('fecha_salida');
             $table->string('estado');
             $table->string('registradoPor');
             $table->timestamps();
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pagos');
+        Schema::dropIfExists('salidas');
     }
 };

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Bahia;
 use App\Models\Cliente;
 use App\Models\Vehiculo;
-use App\Models\Pago;
+use App\Models\Salida;
 
 
 class Registro extends Model
@@ -20,7 +20,6 @@ class Registro extends Model
         'vehiculos_id',
         'clientes_id',
         'fecha_ingreso',
-        'fecha_salida',
         'estado',
         'registradoPor',
     ];
@@ -33,8 +32,8 @@ class Registro extends Model
     public function vehiculos(){
         return $this->belongsTo(Vehiculo::class);
     }
-    public function pagos(){
-        return $this->hasOne(Pago::class, 'registros_id');
+    public function salida(){
+        return $this->hasOne(Salida::class, 'registros_id');
     }
 
 }
