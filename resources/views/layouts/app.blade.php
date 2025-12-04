@@ -8,7 +8,7 @@
   <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Parqueadero') }}</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
@@ -57,7 +57,7 @@
 
       <!-- Preloader -->
         <div class="preloader flex-column justify-content-center align-items-center">
-          <img class="animation__shake" src="{{ asset('logo/logo-parking.png') }}" alt="AdminLTELogo" height="60" width="60">
+          <img class="animation__shake" src="{{ asset('logo/logo-parking.png') }}" alt="Logo" height="60" width="60">
         </div>
             @include('layouts.navbar')
             @include('layouts.sidebar')
@@ -107,7 +107,7 @@
 <!-- AdminLTE App -->
 <script src="{{asset('backend/dist/js/adminlte.js')}}"></script>
 <!-- AdminLTE for dem'o purposes -->
-<script src="{{asset('backend/dist/js/demo.js')}}"></script>
+<!-- <script src="{{asset('backend/dist/js/demo.js')}}"></script> -->
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{asset('backend/dist/js/pages/dashboard.js')}}"></script>
 

@@ -5,7 +5,9 @@ use App\Models\Vehiculo;
 use App\Models\Marca;
 use App\Models\Tipos_Vehiculo;
 use Carbon\Carbon;
+use App\Http\Requests\VehiculoRequest;
 
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
@@ -46,7 +48,7 @@ class VehiculoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(VehiculoRequest $request)
     {
         //
         $image = $request->file('image');
@@ -85,19 +87,42 @@ class VehiculoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Vehiculo $vehiculo)
     {
-        //
+        $tiposvehiculo = Tipos_Vehiculo::where('estado', '=', 1)->orderBy('id')->get();
+        $marca = Marca::where('estado', '=', 1)->orderBy('id')->get();
+        return view('vehiculos.edit',compact('vehiculo','tiposvehiculo', 'marca'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function update(VehiculoRequest $request, Vehiculo $vehiculo)
     {
-        //
-    }
+        $image = $request->file('image');
+        $slug = Str::slug($request->placa);
+        $data = $request->all();
+        if (isset($image)) {
+            if ($vehiculo->image) {
+                $oldImagePath = public_path('uploads/vehiculos/' . $vehiculo->image);
+                if (File::exists($oldImagePath)) {
+                    File::delete($oldImagePath);
+                }
+            }
+            $currentDate = Carbon::now()->toDateString();
+            $imageName = $slug . '-' . $currentDate . '.' . $image->getClientOriginalExtension();
+            $uploadPath = public_path('uploads/vehiculos');
+            if (!File::exists($uploadPath)) {
+                File::makeDirectory($uploadPath, 0777, true, true);
+            }
+            $image->move($uploadPath, $imageName);
+            $data['image'] = $imageName; 
 
+        } else {
+            unset($data['image']);
+        }
+
+        $vehiculo->update($data);
+
+        return redirect()->route('vehiculos.index')->with('successMsg', 'El registro se actualizó exitosamente');
+    }
     /**
      * Remove the specified resource from storage.
      */

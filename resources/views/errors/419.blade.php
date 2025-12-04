@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: white;
+            background-color: #fcfcfb;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -60,8 +60,8 @@
 </head>
 <body>
     <div class="container">
-        <img class="image" src="{{asset('backend/dist/img/404.png')}}" alt="Error 404"/>
-        <p class="msg">Ops, parece que la pagina no existe</p>
+        <img class="image" src="{{asset('backend/dist/img/419.jpg')}}" alt="Error 419"/>
+        <p class="msg">Esta pagina ha expirado</p>
         <span class="btn"><a class="btn" href="/home">Volver a la página de inicio</a></span>
     </div>
 </body>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Marca;
+use App\Http\Requests\MarcaRequest;
 
 use Illuminate\Http\Request;
 
@@ -40,7 +41,7 @@ class MarcaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(MarcaRequest $request)
     {
         //
         $model = new Marca();
@@ -66,14 +67,18 @@ class MarcaController extends Controller
     public function edit(string $id)
     {
         //
+        $marca = Marca::find($id);
+        return view('marcas.edit', compact("marca"));
+
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(MarcaRequest $request, Marca $marca)
     {
-        //
+        $marca->update($request->all());
+        return redirect()->route('marcas.index')->with('successMsg', 'El registro se actualizó exitosamente');
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Metodos_Pago;
+use App\Http\Requests\MetodosPagoRequest;
 
 use Illuminate\Http\Request;
 
@@ -40,7 +41,7 @@ class Metodos_PagoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(MetodosPagoRequest $request)
     {
         //
         $model = new Metodos_Pago();
@@ -65,15 +66,17 @@ class Metodos_PagoController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $metodopago = Metodos_Pago::find($id);
+        return view('metodospago.edit', compact("metodopago"));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(MetodosPagoRequest $request, Metodos_Pago $metodopago)
     {
-        //
+        $metodopago->update($request->all());
+        return redirect()->route('metodospago.index')->with('successMsg', 'El registro se actualizó exitosamente');
     }
 
     /**

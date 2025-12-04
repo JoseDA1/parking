@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 use App\Models\Tipos_Documento;
 use App\Http\Requests\Tipos_DocumentoRequest;
-
 use Illuminate\Http\Request;
 class Tipos_DocumentoController extends Controller
 {
@@ -76,13 +75,12 @@ class Tipos_DocumentoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Tipos_Documento $tiposdocumento)
-{
- 
-    $tiposdocumento->update($request->all());
+    public function update(Tipos_DocumentoRequest $request, Tipos_Documento $tiposdocumento)
+    {
+        $tiposdocumento->update($request->all());
 
-    return redirect()->route('tipos_documentos.index')->with('successMsg', 'El registro se actualizó exitosamente');
-}
+        return redirect()->route('tipos_documentos.index')->with('successMsg', 'El registro se actualizó exitosamente');
+    }
 
     /**
      * Remove the specified resource from storage.

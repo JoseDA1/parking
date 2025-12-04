@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Tarifa;
+use App\Http\Requests\TarifaRequest;
 
 class TarifaController extends Controller
 {
@@ -40,7 +41,7 @@ class TarifaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(TarifaRequest $request)
     {
         //
         $model = new Tarifa();
@@ -69,14 +70,19 @@ class TarifaController extends Controller
     public function edit(string $id)
     {
         //
+        $tarifa = Tarifa::find($id);
+       
+        return view('tarifas.edit', compact("tarifa"));
+
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(TarifaRequest $request, Tarifa $tarifa)
     {
-        //
+        $tarifa->update($request->all());
+        return redirect()->route('tarifas.index')->with('successMsg', 'El registro se actualizó exitosamente');
     }
 
     /**

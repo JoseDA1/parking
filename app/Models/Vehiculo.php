@@ -19,8 +19,8 @@ class Vehiculo extends Model
         'registradoPor',
         'image',
     ];
-    public function marcas(){
-        return $this->belongTo(Marca::class);
+    public function marca(){
+        return $this->belongsTo(Marca::class);
     }
     public function tipos_vehiculos(){
         return $this->belongsTo(Tipos_Vehiculo::class, 'tipos_vehiculos_id', 'id');

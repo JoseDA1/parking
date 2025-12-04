@@ -1,6 +1,7 @@
 @extends ('layouts.app')
 
 @section ('content')
+
 <div class="content-wrapper">
     <section class="content-header">
 		<div class="container-fluid">
@@ -15,7 +16,7 @@
 						<div class="card-header bg-secondary">
 							<h3>@yield('title')</h3>
 						</div>
-						<form method="POST" action="{{ route('tipos_documentos.update',$tiposdocumento) }}">
+						<form method="POST" action="{{ route('metodospago.update',$metodopago) }}">
                             @csrf
 							@method('PUT')
 							<div class="card-body">
@@ -23,34 +24,25 @@
 									<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
 										<div class="form-group label-floating">
 											<label class="control-label">Nombre <strong style="color:red;">(*)</strong></label>
-											<input type="text" class="form-control" id="nombre" name="nombre" autocomplete="off" value="{{ $tiposdocumento->nombre }}">
+											<input type="text" class="form-control" name="nombre" autocomplete="off" value="{{ $metodopago->nombre }}">
 										</div>
 									</div>
 								</div>
-								<div class="row">
-									<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
-										<div class="form-group label-floating">
-											<label class="control-label">Abreviatura <strong style="color:red;">(*)</strong></label>
-											<input type="text" class="form-control" name="abreviatura" autocomplete="off" value="{{ $tiposdocumento->abreviatura }}">
-										</div>
-									</div>
-								</div>
-								<input type="hidden" class="form-control" name="estado" value="{{ $tiposdocumento->estado }}">
-								<input type="hidden" class="form-control" name="registradoPor" value="{{ $tiposdocumento->registradoPor }}">
+								<input type="hidden" class="form-control" name="estado" value="{{ $metodopago->estado }}">
+								<input type="hidden" class="form-control" name="registradoPor" value="{{ $metodopago->registradoPor }}">
 							
 							</div>
 							<div class="card-footer">
 								<div class="row">
 									<div class="col-lg-2 col-xs-4">
-										<button type="submit" class="btn btn-primary btn-block btn-flat">Registrar</button>
+										<button type="submit" class="btn btn-primary btn-block btn-flat">Actualizar</button>
 									</div>
 									<div class="col-lg-2 col-xs-4">
-										<a href="{{ route('tipos_documentos.index') }}" class="btn btn-danger btn-block btn-flat">Atras</a>
+										<a href="{{ route('metodospago.index') }}" class="btn btn-danger btn-block btn-flat">Atrás</a>
 									</div>
 								</div>
 							</div>
 						</form>
-
 					</div>
 				</div>
 			</div>

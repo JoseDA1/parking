@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Cliente;
 use App\Models\Tipos_Documento;
+use App\Http\Requests\ClienteRequest;
 
 use Illuminate\Http\Request;
 
@@ -42,13 +43,16 @@ class ClienteController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ClienteRequest $request)
     {
         //
         $model = new Cliente();
         $model->nombre = $request->nombre;
         $model->documento = $request->documento;
         $model->tipos_documentos_id = $request->tipos_documentos;
+        $model->telefono = $request->telefono;
+        $model->email = $request->email;
+        $model->direccion = $request->direccion;
         $model->estado = $request->estado;
         $model->registradoPor = $request->registradoPor;
         $model->save();
@@ -62,6 +66,10 @@ class ClienteController extends Controller
     public function show(string $id)
     {
         //
+        $cliente = Cliente::with([
+            'tipos_documentos'
+        ])->findOrFail($id);
+        return view("clientes.show", compact("cliente"));
     }
 
     /**
@@ -69,11 +77,11 @@ class ClienteController extends Controller
      */
     public function edit(Cliente $cliente)
     {
-        $tiposdocumento = Tipos_Documento::all();
+        $tiposdocumento = Tipos_Documento::where('estado', '=', 1)->orderBy('id')->get();
         return view('clientes.edit',compact('cliente','tiposdocumento'));
     }
 
-    public function update(Request $request, Cliente $cliente)
+    public function update(ClienteRequest $request, Cliente $cliente)
     {
         $cliente->update($request->all());
         return redirect()->route('clientes.index')->with('successMsg','El registro se actualizó exitosamente');

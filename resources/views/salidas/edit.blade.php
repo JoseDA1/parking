@@ -16,16 +16,21 @@
 						<div class="card-header bg-secondary">
 							<h3>@yield('title')</h3>
 						</div>
-						<form method="POST" action="{{ route('salidas.store') }}">
+						<form method="POST" action="{{ route('salidas.update', $salida) }}">
 							@csrf
+							@method('PUT')
+
 							<div class="card-body">
 								<div class="row">
 									<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
 										<div class="form-group label-floating">
 											<label class="control-label">Registro <strong style="color:red;">(*)</strong></label>
-											<select class="form-control" name="registro" id="registrosalida" autocomplete="off" value="{{ old('registro') }}" required>
+											<select class="form-control" name="registros_id" id="registrosalida" autocomplete="off" value="{{ old('registro') }}" required>
+												<!-- @foreach($registro as $rg)
+													<option value="{{ $rg->id }}">Bahia: {{ $rg->bahias_id }}; Placa: {{ $rg->vehiculos->placa}}</option>
+												@endforeach -->
 												@foreach($registro as $rg)
-													<option value="{{ $rg->id }}">Bahia: {{ $rg->bahias->numero_bahia }}; Placa: {{ $rg->vehiculos->placa}}</option>
+													<option {{ $rg->id == $salida->registros_id ? 'selected' : '' }} value="{{ $rg->id }}">Bahia: {{ $rg->bahias->numero_bahia }}; Placa: {{ $rg->vehiculos->placa}}</option>
 												@endforeach
 											</select>
 										</div>

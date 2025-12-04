@@ -5,6 +5,7 @@ use App\Models\Pago;
 use App\Models\Salida;
 use App\Models\Metodos_Pago;
 use App\Models\Cliente;
+use App\Http\Requests\PagoRequest;
 
 use Illuminate\Http\Request;
 
@@ -46,7 +47,7 @@ class PagoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(PagoRequest $request)
     {
         //
         $model = new Pago();
@@ -56,6 +57,11 @@ class PagoController extends Controller
         $model->estado = $request->estado;
         $model->registradoPor = $request->registradoPor;
         $model->save();
+        $modelSalida = Salida::find($request->salida);
+        if($modelSalida){
+            $modelSalida->estado = '0';
+            $modelSalida->save();
+        }
         return redirect()->route('pagos.index')->with('successMsg', 'El registro se creó exitosamente');
 
     }
@@ -66,22 +72,27 @@ class PagoController extends Controller
     public function show(string $id)
     {
         //
+        $pago = Pago::with([
+            'salida',
+            'metodo_pago'
+        ])->findOrFail($id);
+        return view("pagos.show", compact("pago"));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Pago $pago)
     {
-        //
+        $salida = Salida::where('estado', '=', 1)->orderBy('id')->get();
+        $metodopago = Metodos_Pago::where('estado', '=', 1)->orderBy('nombre')->get();
+        return view('pagos.edit',compact('pago','salida', 'metodopago'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function update(PagoRequest $request, Pago $pago)
     {
-        //
+        $pago->update($request->all());
+        return redirect()->route('pagos.index')->with('successMsg','El registro se actualizó exitosamente');
     }
 
     /**

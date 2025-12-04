@@ -33,7 +33,7 @@
             <td>{{$md->vehiculos->placa}}</td>
             <td>{{$md->clientes->nombre}}</td>
             <td>{{$md->fecha_ingreso}}</td>
-            <td>{{$md->fecha_salida}}</td>
+            <td>{{$md->salida ? $md->salida->fecha_salida : ''}}</td>
             <td>
             <input data-type="registro" data-id="{{$md->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" 
             data-toggle="toggle" data-on="Activo" data-off="Inactivo" {{ $md->estado ? 'checked':'' }}>
@@ -44,6 +44,8 @@
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger btn-sm" title="Eliminar"><i class="fas fa-trash-alt"></i></button>
                 </form>
+                <a href="{{ route('registros.edit',$md->id) }}" class="btn btn-info btn-sm" title="Editar"><i class="fas fa-pencil-alt"></i></a>
+
             </td>
         </tr>
         @endforeach

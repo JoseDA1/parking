@@ -38,7 +38,15 @@ $(document).ready(function() {
         allowClear: true,
         height:'300px'
     });
-    $("#tarifa").select2({
+    $("#tarifas").select2({
+        allowClear: true,
+        height:'300px'
+    });
+    $("#tarifas_id").select2({
+        allowClear: true,
+        height:'300px'
+    });
+    $("#tipos_vehiculos").select2({
         allowClear: true,
         height:'300px'
     });

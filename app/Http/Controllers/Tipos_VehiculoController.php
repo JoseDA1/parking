@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Tipos_Vehiculo;
 use App\Models\Tarifa;
+use App\Http\Requests\TiposVehiculoRequest;
 
 use Illuminate\Http\Request;
 
@@ -42,7 +43,7 @@ class Tipos_VehiculoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(TiposVehiculoRequest $request)
     {
         //
         $model = new Tipos_Vehiculo();
@@ -58,25 +59,16 @@ class Tipos_VehiculoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function edit(Tipos_Vehiculo $tiposvehiculo)
     {
-        //
+        $tarifa = Tarifa::all();
+        return view('tipos_vehiculos.edit',compact('tiposvehiculo','tarifa'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function update(TiposVehiculoRequest $request, Tipos_Vehiculo $tiposvehiculo)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
+        $tiposvehiculo->update($request->all());
+        return redirect()->route('tiposvehiculos.index')->with('successMsg','El registro se actualizó exitosamente');
     }
 
     /**

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Salida;
 use App\Models\Registro;
 use Carbon\Carbon;
+use App\Http\Requests\SalidaRequest;
 
 class SalidaController extends Controller
 {
@@ -38,16 +39,23 @@ class SalidaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(SalidaRequest $request)
     {
         //
-        $model = new Salida();
         $carbonDate = Carbon::now('UTC');
+        $fecha = $carbonDate->format('Y-m-d H:i:s');
+        $model = new Salida();
         $model->registros_id = $request->registro;
-        $model->fecha_salida = $carbonDate->format('Y-m-d H:i:s');
+        $model->fecha_salida = $fecha;
         $model->estado = $request->estado;
         $model->registradoPor = $request->registradoPor;
         $model->save();
+
+		$modelRegistro = Registro::find($request->registro);
+        if($modelRegistro){
+            $modelRegistro->estado = '0';
+            $modelRegistro->save();
+        }
         return redirect()->route('salidas.index')->with('successMsg', 'El registro se creó exitosamente');
     }
 
@@ -62,17 +70,16 @@ class SalidaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Salida $salida)
     {
-        //
+        $registro = Registro::where('estado', '=', 1)->orderBy('id')->get();
+        return view('salidas.edit',compact('salida','registro'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function update(SalidaRequest $request, Salida $salida)
     {
-        //
+        $salida->update($request->all());
+        return redirect()->route('salidas.index')->with('successMsg','El registro se actualizó exitosamente');
     }
 
     /**

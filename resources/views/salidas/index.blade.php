@@ -29,7 +29,7 @@
         @foreach($model as $sa)
         <tr>
             <td>{{$sa->id}}</td>
-            <td>{{$sa->registro->bahias_id}}</td>
+            <td>{{$sa->registro->bahias->numero_bahia}}</td>
             <td>{{$sa->registro->vehiculos->placa}}</td>
             <td>{{$sa->fecha_salida}}</td>
             <td>
@@ -42,6 +42,8 @@
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger btn-sm" title="Eliminar"><i class="fas fa-trash-alt"></i></button>
                 </form>
+                <a href="{{ route('salidas.edit',$sa->id) }}" class="btn btn-info btn-sm" title="Editar"><i class="fas fa-pencil-alt"></i></a>
+
             </td>
         </tr>
         @endforeach

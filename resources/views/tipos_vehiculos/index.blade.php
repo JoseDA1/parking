@@ -46,6 +46,8 @@
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger btn-sm" title="Eliminar"><i class="fas fa-trash-alt"></i></button>
                 </form>
+                <a href="{{ route('tiposvehiculos.edit',$md->id) }}" class="btn btn-info btn-sm" title="Editar"><i class="fas fa-pencil-alt"></i></a>
+
             </td>
         </tr>
         @endforeach

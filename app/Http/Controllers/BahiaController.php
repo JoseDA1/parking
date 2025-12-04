@@ -56,6 +56,10 @@ class BahiaController extends Controller
     public function show(string $id)
     {
         //
+        $bahia = Bahia::with([
+            'numero_bahia'
+        ])->findOrFail($id);
+        return view('bahias.show', compact("bahia"));
     }
 
     /**

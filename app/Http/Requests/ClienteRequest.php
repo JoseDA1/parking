@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class ClienteRequest extends FormRequest
 {
@@ -11,7 +12,7 @@ class ClienteRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,8 +22,35 @@ class ClienteRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            //
-        ];
+        $clienteId = $this->route('cliente');
+
+        if (request()->isMethod('post')) {
+            return [
+                'nombre' => 'required|string|max:255|regex:/^[\pL\s]+$/u', 
+                'documento' => 'required|digits_between:5,50|unique:clientes,documento', 
+                'tipos_documentos' => 'required|numeric|exists:tipos_documentos,id', 
+                'telefono' => 'required|string|digits_between:5,50', 
+                'email' => 'required|string', 
+                'direccion' => 'string|max:255', 
+                'estado' => 'required',
+                'registradoPor' => 'required',
+            ];
+        } elseif (request()->isMethod('put') || request()->isMethod('patch')) {
+            return [
+                'nombre' => 'sometimes|required|string|max:255|regex:/^[\pL\s]+$/u',
+                'documento' => [
+                    'required', 
+                    'digits_between:5,50',
+                    Rule::unique('clientes', 'documento')->ignore($clienteId),
+                ],
+                'tipos_documentos' => 'sometimes|required|numeric|exists:tipos_documentos,id',
+                'telefono' => 'required|string|digits_between:5,50', 
+                'email' => 'required|string', 
+                'direccion' => 'string|max:255', 
+                'estado' => 'required',
+                'registradoPor' => 'required',
+            ];
+        }
+        return [];
     }
 }

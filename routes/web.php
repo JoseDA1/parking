@@ -19,6 +19,15 @@ Route::get('/', function () {
 Route::get('/404', function () {
     abort(404);
 });
+Route::get('/403', function () {
+    abort(403);
+});
+Route::get('/419', function () {
+    abort(419);
+});
+Route::get('/500', function () {
+    abort(500);
+});
 Auth::routes();
 
 

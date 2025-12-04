@@ -7,6 +7,7 @@ use App\Models\Vehiculo;
 use App\Models\Cliente;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use App\Http\Requests\RegistroRequest;
 
 class RegistroController extends Controller
 {
@@ -45,7 +46,7 @@ class RegistroController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(RegistroRequest $request)
     {
         //
         $model = new Registro();
@@ -72,17 +73,18 @@ class RegistroController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Registro $registro)
     {
-        //
+        $cliente = Cliente::where('estado', '=', 1)->orderBy('id')->get();
+        $bahia = Bahia::where('estado', '=', 1)->orderBy('numero_bahia')->get();
+        $vehiculo = Vehiculo::where('estado', '=', 1)->orderBy('id')->get();
+        return view('registros.edit',compact('registro','cliente', 'bahia', 'vehiculo'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function update(RegistroRequest $request, Registro $registro)
     {
-        //
+        $registro->update($request->all());
+        return redirect()->route('registros.index')->with('successMsg','El registro se actualizó exitosamente');
     }
 
     /**

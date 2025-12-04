@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class Tipos_DocumentoRequest extends FormRequest
+class MarcaRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -20,13 +20,13 @@ class Tipos_DocumentoRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-    public function rules(): array{
-        $tipoDocumentoId = $this->route('tipos_documento');
+    public function rules(): array
+    {
+        $marcaId = $this->route('marca');
 
         if(request()->isMethod('post')){
             return[
-                'nombre' => 'required|unique:tipos_documentos|string|max:255|regex:/^[\pL\s]+$/u',
-                'abreviatura' => 'required|unique:tipos_documentos|string|max:255|alpha',
+                'nombre' => 'required|unique:marcas|string|max:255|regex:/^[\pL\s]+$/u',
                 'estado' => 'required',
                 'registradoPor' => 'required',
             ];
@@ -38,15 +38,7 @@ class Tipos_DocumentoRequest extends FormRequest
                     'string', 
                     'max:255',
                     'regex:/^[\pL\s]+$/u',
-                    Rule::unique('tipos_documentos', 'nombre')->ignore($tipoDocumentoId),
-                ],
-                'abreviatura' => [
-                    'sometimes', 
-                    'required', 
-                    'string', 
-                    'max:255',
-                    'alpha',
-                    Rule::unique('tipos_documentos', 'abreviatura')->ignore($tipoDocumentoId),
+                    Rule::unique('marcas', 'nombre')->ignore($marcaId),
                 ],
                 'estado' => 'required',
                 'registradoPor' => 'required',
