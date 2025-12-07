@@ -18,7 +18,7 @@ class MetodosPagoRequest extends FormRequest
 
         if (request()->isMethod('post')) {
             return [
-                'nombre' => 'required|unique:metodos_pago|string|max:100',
+                'nombre' => 'required|unique:metodos_pagos|string|max:100',
                 'estado' => 'required',
                 'registradoPor' => 'required',
             ];
@@ -29,7 +29,7 @@ class MetodosPagoRequest extends FormRequest
                     'required', 
                     'string', 
                     'max:100',
-                    Rule::unique('metodos_pago', 'nombre')->ignore($metodoId),
+                    Rule::unique('metodos_pagos', 'nombre')->ignore($metodoId),
                 ],
                 'estado' => 'required',
                 'registradoPor' => 'required',

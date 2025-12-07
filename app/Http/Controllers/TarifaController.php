@@ -45,15 +45,14 @@ class TarifaController extends Controller
     {
         //
         $model = new Tarifa();
-        $model->valor_hora = $request->hora;
-        $model->valor_parcial = $request->parcial;
-        $model->valor_dia = $request->dia;
-        $model->valor_mensuales = $request->mensual;
+        $model->valor_hora = $request->valor_hora;
+        $model->valor_parcial = $request->valor_parcial;
+        $model->valor_dia = $request->valor_dia;
+        $model->valor_mensuales = $request->valor_mensuales;
         $model->estado = $request->estado;
         $model->registradoPor = $request->registradoPor;
         $model->save();
         return redirect()->route('tarifas.index')->with('successMsg', 'El registro se creó exitosamente');
-
     }
 
     /**

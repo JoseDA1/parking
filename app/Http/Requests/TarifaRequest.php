@@ -22,10 +22,10 @@ class TarifaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'hora' => 'required|numeric|min:0',
-            'parcial' => 'required|numeric|min:0',
-            'dia' => 'required|numeric|min:0',
-            'mensual' => 'required|numeric|min:0',
+            'valor_hora' => 'required|numeric|min:0',
+            'valor_parcial' => 'required|numeric|min:0',
+            'valor_dia' => 'required|numeric|min:0',
+            'valor_mensuales' => 'required|numeric|min:0',
             'estado' => 'required',
             'registradoPor' => 'required',
         ];

@@ -27,7 +27,7 @@ class TiposVehiculoRequest extends FormRequest
         if (request()->isMethod('post')) {
             return [
                 'nombre' => 'required|unique:tipos_vehiculos|string|max:255',
-                'tarifas_id' => 'required|numeric|exists:tarifas,id',
+                'tarifa' => 'required|numeric|exists:tarifas,id',
                 'estado' => 'required',
                 'registradoPor' => 'required',
             ];

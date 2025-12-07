@@ -14,12 +14,11 @@ class PagoRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'valor_total' => 'required|numeric|min:0',
-            'salidas_id' => 'required|numeric|exists:salidas,id',
-            'metodos_pagos_id' => 'required|numeric|exists:metodos_pago,id',
-            'clientes_id' => 'required|numeric|exists:clientes,id',
-            'estado' => 'required',
-            'registradoPor' => 'required',
-        ];
+        'valor_total' => 'required|numeric|min:0',
+        'salidas_id' => 'required|numeric|exists:salidas,id',
+        'metodospagos' => 'required|numeric|exists:metodos_pagos,id', 
+        'estado' => 'required',
+        'registradoPor' => 'required',
+    ];
     }
 }

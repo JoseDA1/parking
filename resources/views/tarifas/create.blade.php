@@ -23,13 +23,13 @@
 									<div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
 										<div class="form-group label-floating">
 											<label class="control-label">Valor Hora <strong style="color:red;">(*)</strong></label>
-											<input type="number" class="form-control" name="hora" autocomplete="off" value="{{ old('hora') }}" required>
+											<input type="number" class="form-control" name="valor_hora" autocomplete="off" value="{{ old('valor_hora') }}" required>
 										</div>
 									</div>
 									<div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
 										<div class="form-group label-floating">
 											<label class="control-label">Valor Parcial <strong style="color:red;">(*)</strong></label>
-											<input type="number" class="form-control" name="parcial" autocomplete="off" value="{{ old('parcial') }}" required>
+											<input type="number" class="form-control" name="valor_parcial" autocomplete="off" value="{{ old('valor_parcial') }}" required>
 										</div>
 									</div>
 									
@@ -38,13 +38,13 @@
 									<div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
 										<div class="form-group label-floating">
 											<label class="control-label">Valor Dia <strong style="color:red;">(*)</strong></label>
-											<input type="number" class="form-control" name="dia" autocomplete="off" value="{{ old('dia') }}" required>
+											<input type="number" class="form-control" name="valor_dia" autocomplete="off" value="{{ old('valor_dia') }}" required>
 										</div>
 									</div>
 									<div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
 										<div class="form-group label-floating">
 											<label class="control-label">Valor Mensual <strong style="color:red;">(*)</strong></label>
-											<input type="number" class="form-control" name="mensual" autocomplete="off" value="{{ old('mensual') }}" required>
+											<input type="number" class="form-control" name="valor_mensuales" autocomplete="off" value="{{ old('valor_mensuales') }}" required>
 										</div>
 									</div>
 									
